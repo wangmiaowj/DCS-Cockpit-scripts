@@ -9,5 +9,5 @@ IS_HUD = true--显示器是否为HUD，BASE页面禁止申明或者赋值为true
 local baseSimple = AddSimple()
 
 AddBox(nil,0.1*Width,0.1*Height,nil,nil,MakeMaterial(nil, { 0,60,80, 255 }),nil,nil,baseSimple)
---完整的
+--完整参数
 --AddBox('name',0.1*Width,0.1*Height,{0,0},{0,0},MakeMaterial(nil, { 0,60,80, 255 }),DEFAULT_LEVEL,COMPARE,baseSimple,nil,nil,nil)

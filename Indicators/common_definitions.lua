@@ -34,7 +34,7 @@ AnimalControllor = {
 	--increaseRenderTargetCounter = "increase_render_target_counter",
 }
 
-Alignments={
+Align={
 	CB='CenterBottom',
 	CC='CenterCenter',
 	CT='CenterTop',
