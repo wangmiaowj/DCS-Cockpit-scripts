@@ -17,17 +17,18 @@ DECREASE_LEVEL = h_clip_relations.DECREASE_LEVEL
 DECREASE_IF_LEVEL = h_clip_relations.DECREASE_IF_LEVEL
 
 AnimalControllor = {
-	changeColorWhenParameterEqualToNumber = "change_color_when_parameter_equal_to_number",
-	textUsingParameter = "text_using_parameter",
-	moveLeftRightUsingParameter = "move_left_right_using_parameter",
-	moveUpDownUsingParameter = "move_up_down_using_parameter",
-	opacityUsingParameter = "opacity_using_parameter",
-	rotateUsingParameter = "rotate_using_parameter",
-	compareParameters = "compare_parameters",
-	parameterInRange = "parameter_in_range",
-	parameterCompareWithNumber = "parameter_compare_with_number",
-	lineObjectSetPointUsingParameters = "line_object_set_point_using_parameters",
-	scale = "scale",
+	--{控制器类型,参数2......}
+	changeColorWhenParameterEqualToNumber = "change_color_when_parameter_equal_to_number",--句柄索引,值,R,G,B
+	textUsingParameter = "text_using_parameter",--句柄索引,格式索引
+	moveLeftRightUsingParameter = "move_left_right_using_parameter",--句柄索引,输出与输入的比例
+	moveUpDownUsingParameter = "move_up_down_using_parameter",--句柄索引,输出与输入的比例(视SetScale函数传入的参数而定)
+	opacityUsingParameter = "opacity_using_parameter",--句柄索引
+	rotateUsingParameter = "rotate_using_parameter",--句柄索引,输出与输入的比例(弧度制)
+	compareParameters = "compare_parameters",--句柄索引1,句柄索引2		当句柄1和句柄2的值相等时，该元素会可见
+	parameterInRange = "parameter_in_range",--句柄索引,最小值,最大值	当值在最小值和最大值之间时该元素会可见，即最小值<值<最大值
+	parameterCompareWithNumber = "parameter_compare_with_number",--句柄索引,被比较的值		当句柄的值与被比较的值相等时该元素会可见
+	lineObjectSetPointUsingParameters = "line_object_set_point_using_parameters",--点索引1,句柄索引1,句柄索引2,输出输入比例X,输出输入比例Y
+	---scale = "scale",
 	--changeTextureStateUsingParameter = "change_texture_state_using_parameter",
 	--changeColorUsingParameter = "change_color_using_parameter",
 	--fovControl = "fov_control",
@@ -65,10 +66,14 @@ end
 function AddPageControll(element_params,controllers,element_param_name,pageValue)
 	if element_params and type(element_params)=='table' and #element_params>0 then
 		element_params[#element_params+1] = element_param_name
-		controllers[#controllers+1] = {"parameter_in_range",#element_params - 1,pageValue-0.1,pageValue+0.1}
+		controllers[#controllers+1] = {AnimalControllor.parameterInRange,#element_params - 1,pageValue-0.1,pageValue+0.1}
 	else
 		element_params = {element_param_name}
-		controllers = {{"parameter_in_range",0,pageValue-0.1,pageValue+0.1}}
+		controllers = {{AnimalControllor.parameterInRange,0,pageValue-0.1,pageValue+0.1}}
+	end
+if type(SUB_PAGE_NAME)~="nil" then
+		element_params[#element_params+1] = SUB_PAGE_NAME
+		controllers[#controllers+1] = {AnimalControllor.parameterInRange,#element_params - 1,SUB_PAGE_VAL-0.1,SUB_PAGE_VAL+0.1}
 	end
 	return {element_params,controllers}
 end
@@ -78,12 +83,12 @@ function AddLightnessControll(element_params,controllers,element_param_name)
 	if element_params and type(element_params)=='table' and #element_params>0 then
 		if type(element_param_name)=="string" and not IGNORE_BRT then
 			element_params[#element_params+1] = element_param_name..'_BRT'
-			controllers[#controllers+1] = {"opacity_using_parameter",#element_params - 1}
+			controllers[#controllers+1] = {AnimalControllor.opacityUsingParameter,#element_params - 1}
 		end
 		ret_obj = {element_params,controllers}
 	elseif type(element_param_name)=="string" and not IGNORE_BRT then
 		element_params = {element_param_name..'_BRT'}
-		controllers = {{"opacity_using_parameter",0}}
+		controllers = {{AnimalControllor.opacityUsingParameter,0}}
 		ret_obj = {element_params,controllers}
 	end
 	return ret_obj
@@ -113,7 +118,7 @@ function AddSimple(name,pos,rot,parent_element,element_params,controllers)
 end
 
 function AddText(name, val, material, pos, alignment, stringdefs,_h_clip_relation,
-				 level, parent, formats, element_params, controllers)
+				 level, parent, formats, element_params, controllers, alpha)
 	if material == nil then
 		material = "font_kneeboard"
 	end
@@ -171,7 +176,11 @@ function AddText(name, val, material, pos, alignment, stringdefs,_h_clip_relatio
 	if type(IS_HUD) == "boolean" then
 		text.collimated = IS_HUD
 	end
-	text.additive_alpha = true
+	if type(alpha) == "boolean" then
+		text.additive_alpha = alpha
+	else
+		text.additive_alpha = false
+	end
 	Add(text)
 	return text
 end
@@ -444,7 +453,7 @@ function AddMeshPoly(name,vertices,indices,pos,rot,material,h_clip_relation,leve
 	return meshPoly
 end
 
-function AddTexture(name, vertices, indices,tex_coords, material, pos, rot, h_clip_relation, level, parent, element_params,controllers)
+function AddTexture(name, vertices, indices,tex_coords, material, pos, rot, h_clip_relation, level, parent, element_params,controllers,alpha)
 	local texture = CreateElement "ceTexPoly"
 	texture.name = name or create_guid_string()
 	texture.vertices = vertices or {{-Width,Height},{Width,Height},{Width,-Height},{-Width,-Height},}
@@ -473,11 +482,56 @@ function AddTexture(name, vertices, indices,tex_coords, material, pos, rot, h_cl
 			texture.parent_element = parent
 		end
 	end
-	texture.collimated = true
+	if type(IS_HUD) == "boolean" then
+		texture.collimated = IS_HUD
+	end
 	texture.use_mipfilter = true
+if type(alpha)=="boolean" then
+		texture.additive_alpha = alpha
+	else
 	texture.additive_alpha = true
+end
 	texture.h_clip_relation = h_clip_relation or COMPARE
 	texture.level = level or DEFAULT_LEVEL
 	Add(texture)
 	return texture
+end
+
+function MirrorSimpleLine(vertical,mirrorAxis,mirrorAxisPos,isNew)
+	if type(vertical)~="table" then
+		return {}
+	end
+	if mirrorAxisPos == nil then
+		mirrorAxisPos = 0
+	end
+	if mirrorAxis == nil then
+		mirrorAxis = 'X'
+	end
+	local newVertical = {}
+	if isNew then
+		for i = #vertical, 1, -1 do
+			local newCoordinate
+			if mirrorAxis == 'X' then
+				local relativeAxis = -(vertical[i][2]-mirrorAxisPos)
+				newCoordinate = {vertical[i][1],mirrorAxisPos+relativeAxis}
+			else
+				local relativeAxis = -(vertical[i][1]-mirrorAxisPos)
+				newCoordinate = {mirrorAxisPos+relativeAxis,vertical[i][2]}
+			end
+			newVertical[#newVertical+1] = newCoordinate
+		end
+		return newVertical
+	end
+	for i = #vertical - 1, 1, -1 do
+		local newCoordinate
+		if mirrorAxis == 'X' then
+			local relativeAxis = -(vertical[i][2]-mirrorAxisPos)
+			newCoordinate = {vertical[i][1],mirrorAxisPos+relativeAxis}
+		else
+			local relativeAxis = -(vertical[i][1]-mirrorAxisPos)
+			newCoordinate = {mirrorAxisPos+relativeAxis,vertical[i][2]}
+		end
+		vertical[#vertical + 1] = newCoordinate
+	end
+	return vertical
 end

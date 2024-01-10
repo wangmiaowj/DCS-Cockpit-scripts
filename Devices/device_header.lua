@@ -63,7 +63,7 @@ BASE_SENSOR = {
     HEADING = get_param_handle('BASE_SENSOR_HEADING'),--真航向 单位 弧度
     CANOPY_STATE = get_param_handle('BASE_SENSOR_CANOPY_STATE'),--座舱盖状态
     RIGHT_ENGINE_TEMP_BEFORE_TURBINE = get_param_handle('BASE_SENSOR_RIGHT_ENGINE_TEMP_BEFORE_TURBINE'),--右发涡轮温度 单位摄氏度
-    RIGHT_ENGINE_FUEL_CONSUMPTION = get_param_handle('BASE_SENSOR_RIGHT_ENGINE_FUEL_CONSUMPTION'),--右发油耗 单位公斤/分
+    RIGHT_ENGINE_FUEL_CONSUPMTION = get_param_handle('BASE_SENSOR_RIGHT_ENGINE_FUEL_CONSUMPTION'),--右发油耗 单位公斤/分
     LEFT_ENGINE_RPM = get_param_handle('BASE_SENSOR_LEFT_ENGINE_RPM'),--左发转数
     RUDDER_POS = get_param_handle('BASE_SENSOR_RUDDER_POS'),--方向舵位置 0无操作，1左满舵，-1右满舵
     RIGHT_ENGINE_RPM = get_param_handle('BASE_SENSOR_RIGHT_ENGINE_RPM'),--右发转数
@@ -86,3 +86,15 @@ BASE_SENSOR = {
     RUDDER_NORMED = get_param_handle('BASE_SENSOR_RUDDER_NORMED'),--
     RIGHT_THROTTLE_RAW_CONTROL = get_param_handle('BASE_SENSOR_RIGHT_THROTTLE_RAW_CONTROL')--右节流阀
 }
+
+
+MS_TO_KNOTS = 1.9504132 --米每秒换算节
+MS_TO_KMH = 3.6--米每秒换算千米时
+METER_TO_INCH = 3.2808--米换算英尺
+KG_TO_LBS = 2.204623 -- 公斤换算磅
+Meter_TO_NM = 0.00054 --米换算海里
+
+function GetGroundSpeed()
+    local gsx, gsy, gsz = get_base_data():getSelfVelocity()
+    return math.sqrt(gsx * gsx + gsz * gsz)
+end
