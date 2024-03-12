@@ -174,4 +174,94 @@ function StringContains(str, item)
     return false
 end
 
+-- 代码来自JNelson
+-- code from JNelson
+function Recursively_print(table_to_print, max_depth, max_number_tables, filepath)
+	local file = io.open(filepath, "a")
+    if file == nil then
+        return
+    end
+	file:write("Key,Value\n")
+	
+	local stack = {}
+	
+	table.insert(stack, {key = "start", value = table_to_print, level = 0})
+	
+	local total = 0
+	
+	local hash_table = {}
+
+	hash_table[tostring(hash_table)] = 2
+	hash_table[tostring(stack)] = 2
+	
+	local item = true
+	while (item) do
+		item = table.remove(stack)
+		
+		if (item == nil) then
+			break
+		end
+		local key = item.key
+		local value = item.value
+		local level = item.level
+		
+		file:write(string.rep("\t", level)..tostring(key).." = "..tostring(value).."\n")
+		
+		local hash = hash_table[tostring(value)]
+		local valid_table = (hash == nil or hash < 2)
+		
+		if (type(value) == "table" and valid_table) then
+			for k,v in pairs(value) do
+				if (v ~= nil and level <= max_depth and total < max_number_tables) then
+					table.insert(stack, {key = k, value = v, level = level+1})
+					if (type(v) == "table") then
+						if (hash_table[tostring(v)] == nil) then
+							hash_table[tostring(v)] = 1
+						elseif (hash_table[tostring(v)] < 2) then
+							hash_table[tostring(v)] = 2
+						end
+						total = total + 1
+					end
+				end
+			end
+		end
+		
+		if (getmetatable(value) and valid_table) then
+			for k,v in pairs(getmetatable(value)) do
+				if (v ~= nil and level <= max_depth and total < max_number_tables) then
+					table.insert(stack, {key = k, value = v, level = level+1})
+					if (type(v) == "table") then
+						if (hash_table[tostring(v)] == nil) then
+							hash_table[tostring(v)] = 1
+						elseif (hash_table[tostring(v)] < 2) then
+							hash_table[tostring(v)] = 2
+						end
+						total = total + 1
+					end
+				end
+			end
+		end
+	end
+	
+	file:close()
+end
+
+function WriteLog(msg,path)
+    local _path
+    if path then
+        _path = path
+    else
+        _path = 'Logs/'..get_aircraft_type()..'_cockpit.log'
+    end
+    local file = io.open(_path, "a")
+    if file == nil then
+        return
+    end
+    file:write(msg..'\n')
+    file:close()
+end
+
+function OnGround()
+    return Limit(get_aircraft_draw_argument_value(1)+get_aircraft_draw_argument_value(4)+get_aircraft_draw_argument_value(6),0,1)>0
+end
 --print(Input2OutputArgument(0.9,{-1,1},{-180,180}))
