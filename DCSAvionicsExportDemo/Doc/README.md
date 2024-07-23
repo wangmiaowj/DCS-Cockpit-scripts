@@ -1,15 +1,17 @@
 [English](README.md) | [简体中文](README_zh-CN.md) 
-DCSAvionicsExport.dll was developed to solve the problem that the functions of avionics equipment cannot be used in the Lua environment. These functions can only be called in C++. The following are the functions available in this dll
+# DCSAvionicsExport.dll was developed to solve the problem that the functions of avionics equipment cannot be used in the Lua environment. These functions can only be called in C++. The following are the functions available in this dll
+
 # Assume the mod structure is like this
-# bin
-#   DCSAvionicsExport.dll
-#   EFM.dll
-# Cockpit
-#   Scripts
-#       Systems
-#           demo.lua
-#       device_init.lua
-#
+```
+bin
+├──DCSAvionicsExport.dll
+└──EFM.dll
+Cockpit
+├──Scripts
+├────Systems
+├──────demo.lua
+└────device_init.lua
+```
 # in demo.lua
 ```lua
 package.cpath = package.cpath..';'..LockOn_Options.script_path..'../../bin/?.dll'

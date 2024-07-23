@@ -1,15 +1,16 @@
 [English](README.md) | [简体中文](README_zh-CN.md) 
 DCSAvionicsExport.dll是为了解决lua环境不可使用的航空电子设备的函数而开发出的，这些函数只能在c++进行调用。下面说明这个dll可用的函数
 # 假设模组的结构是这样的
-# bin
-#   DCSAvionicsExport.dll
-#   EFM.dll
-# Cockpit
-#   Scripts
-#       Systems
-#           demo.lua
-#       device_init.lua
-#
+```
+bin
+├──DCSAvionicsExport.dll
+└──EFM.dll
+Cockpit
+├──Scripts
+├────Systems
+├──────demo.lua
+└────device_init.lua
+```
 # 在demo.lua中
 ```lua
 package.cpath = package.cpath..';'..LockOn_Options.script_path..'../../bin/?.dll'
