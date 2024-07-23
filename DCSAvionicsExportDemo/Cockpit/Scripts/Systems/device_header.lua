@@ -1,0 +1,100 @@
+CptEvntNames={
+    weaponRearmFirstStep='WeaponRearmFirstStep',
+    weaponRearmComplete='WeaponRearmComplete',
+    gndPwrOn='GroundPowerOn',--地面电源接通事件
+    gndPwrOff='GroundPowerOff',--地面电源断开事件
+    disableTurboGear='DisableTurboGear',--涡轮禁用事件
+    enableTurboGear='EnableTurboGear',--涡轮启用事件
+    switch_datalink='switch_datalink',--选择数据链事件?
+    weaponRearmSingleStepComplete='WeaponRearmSingleStepComplete',--
+    wheelChocksOn='WheelChocksOn',--轮挡放置事件
+    wheelChocksOff='WheelChocksOff',--轮挡移除事件
+    setupHMS='setup_HMS',--设置头瞄事件
+    setupNVG='setup_NVG',--设置夜视镜事件
+    linkNOPtoNet='LinkNOPtoNet',
+    unlinkNOPfromNet='UnlinkNOPfromNet',
+    initChaffFlarePayload='initChaffFlarePayload',--箔条热诱弹重装事件
+    onNewNetPlane='OnNewNetPlane',
+    repair='Repair',--修复事件
+    unlimitedWeaponStationRestore='UnlimitedWeaponStationRestore',
+    gndAirOff='GroundAirOff',--地面气源关闭事件
+    gndAirOn='GroundAirOn',--地面气源打开事件
+    EGI_TurnOff='EGI_TurnOff',--EGI涡轮关闭事件
+    EGI_TurnOn='EGI_TurnOn',--EGI涡轮打开事件
+    restoreEGIoperation='RestoreEGIoperation',
+    TISLmodeChange='TISLmodeChange',
+    cockpitRelease='cockpit_release',
+    canopyOpen='CanopyOpen',--舱盖打开事件
+    canopyClose='CanopyClose',--舱盖闭合事件
+    refuel='refuel',--加油事件
+    refuelcomplete='refuelcomplete',--加油完成事件
+    refueldone='refueldone',--加油完成事件
+    reloadDone='ReloadDone',--
+}
+
+BASE_SENSOR = {
+    WOW_NOSE_GEAR = get_param_handle('BASE_SENSOR_WOW_NOSE_GEAR'),--前起落架
+    LEFT_THROTTLE_POS = get_param_handle('BASE_SENSOR_LEFT_THROTTLE_POS'),--左节流阀位置
+    LEFT_ENGINE_TEMP_BEFORE_TURBINE = get_param_handle('BASE_SENSOR_LEFT_ENGINE_TEMP_BEFORE_TURBINE'),--左发涡轮温度，单位 摄氏度
+    LEFT_ENGINE_FUEL_CONSUPMTION = get_param_handle('BASE_SENSOR_LEFT_ENGINE_FUEL_CONSUPMTION'),--左发油耗，单位 公斤/分
+    ROLL = get_param_handle('BASE_SENSOR_ROLL'),--滚转角，单位 弧度
+    MAG_HEADING = get_param_handle('BASE_SENSOR_MAG_HEADING'),--磁航向，单位 弧度
+    RADALT = get_param_handle('BASE_SENSOR_RADALT'),--雷达高度，单位 米
+    PITCH = get_param_handle('BASE_SENSOR_PITCH'),--俯仰角，单位 弧度
+    NOSE_GEAR_UP = get_param_handle('BASE_SENSOR_NOSE_GEAR_UP'),--鼻轮是否收起
+    AOS = get_param_handle('BASE_SENSOR_AOS'),--
+    STICK_PITCH_NORMED = get_param_handle('BASE_SENSOR_STICK_PITCH_NORMED'),
+    BAROALT = get_param_handle('BASE_SENSOR_BAROALT'),--气压高度，单位 米
+    AOA = get_param_handle('BASE_SENSOR_AOA'),--攻角，单位弧度
+    IAS = get_param_handle('BASE_SENSOR_IAS'),--表速，单位 米/秒
+    VERTICAL_SPEED = get_param_handle('BASE_SENSOR_VERTICAL_SPEED'),--垂直速度，米/秒
+    TAS = get_param_handle('BASE_SENSOR_TAS'),--真空速 单位 米/秒
+    VERTICAL_ACCEL = get_param_handle('BASE_SENSOR_VERTICAL_ACCEL'),--过载G值
+    FLAPS_POS = get_param_handle('BASE_SENSOR_FLAPS_POS'),--襟翼位置，0收起，0.5着陆位，1起飞位
+    HELI_CORRECTION = get_param_handle('BASE_SENSOR_HELI_CORRECTION'),--直升机用的，不知道是什么
+    LEFT_THROTTLE_RAW_CONTROL = get_param_handle('BASE_SENSOR_LEFT_THROTTLE_RAW_CONTROL'),--左节流阀原始控制，可能是外设油门轴的
+    MACH = get_param_handle('BASE_SENSOR_MACH'),--马赫数
+    LEFT_GEAR_UP = get_param_handle('BASE_SENSOR_LEFT_GEAR_UP'),--左起落架是否收起，0放1收
+    HORIZONTAL_ACCEL = get_param_handle('BASE_SENSOR_HORIZONTAL_ACCEL'),--水平加速度 单位 米/平方秒
+    LATERAL_ACCEL = get_param_handle('BASE_SENSOR_LATERAL_ACCEL'),--横向过载G值
+    ROLL_RATE = get_param_handle('BASE_SENSOR_ROLL_RATE'),--滚转率 单位 弧度/秒
+    PITCH_RATE = get_param_handle('BASE_SENSOR_PITCH_RATE'),--俯仰率 单位弧度/秒
+    LEFT_GEAR_DOWN = get_param_handle('BASE_SENSOR_LEFT_GEAR_DOWN'),--左起落架是否放下，0收1放
+    HEADING = get_param_handle('BASE_SENSOR_HEADING'),--真航向 单位 弧度
+    CANOPY_STATE = get_param_handle('BASE_SENSOR_CANOPY_STATE'),--座舱盖状态
+    RIGHT_ENGINE_TEMP_BEFORE_TURBINE = get_param_handle('BASE_SENSOR_RIGHT_ENGINE_TEMP_BEFORE_TURBINE'),--右发涡轮温度 单位摄氏度
+    RIGHT_ENGINE_FUEL_CONSUPMTION = get_param_handle('BASE_SENSOR_RIGHT_ENGINE_FUEL_CONSUMPTION'),--右发油耗 单位公斤/分
+    LEFT_ENGINE_RPM = get_param_handle('BASE_SENSOR_LEFT_ENGINE_RPM'),--左发转数
+    RUDDER_POS = get_param_handle('BASE_SENSOR_RUDDER_POS'),--方向舵位置 0无操作，1左满舵，-1右满舵
+    RIGHT_ENGINE_RPM = get_param_handle('BASE_SENSOR_RIGHT_ENGINE_RPM'),--右发转数
+    WOW_RIGHT_GEAR = get_param_handle('BASE_SENSOR_WOW_RIGHT_GEAR'),--右起落架
+    WOW_LEFT_GEAR = get_param_handle('BASE_SENSOR_WOW_LEFT_GEAR'),--左起落架
+    RIGHT_GEAR_DOWN = get_param_handle('BASE_SENSOR_RIGHT_GEAR_DOWN'),--右起落架是否放下
+    NOSE_GEAR_DOWN = get_param_handle('BASE_SENSOR_NOSE_GEAR_DOWN'),--前起落架是否放下
+    RIGHT_GEAR_UP = get_param_handle('BASE_SENSOR_RIGHT_GEAR_UP'),--右起落架是否收起
+    SPEED_BRAKE_POS = get_param_handle('BASE_SENSOR_SPEED_BRAKE_POS'),--扰流板位置，0闭合1开启
+    GEAR_HANDLE = get_param_handle('BASE_SENSOR_GEAR_HANDLE'),--起落架手柄位置，0收1放
+    ALTIMETER_ATMO_PRESSURE_HG = get_param_handle('BASE_SENSOR_ALTIMETER_ATMO_PRESSURE_HG'),--高度计气压汞柱
+    STICK_ROLL_POS = get_param_handle('BASE_SENSOR_STICK_ROLL_POS'),--驾驶感摇杆滚转位置
+    STICK_PITCH_POS = get_param_handle('BASE_SENSOR_STICK_PITCH_POS'),--驾驶感俯仰位置
+    RIGHT_THROTTLE_POS = get_param_handle('BASE_SENSOR_RIGHT_THROTTLE_POS'),--右发节流阀位置
+    HELI_COLLECTIVE = get_param_handle('BASE_SENSOR_HELI_COLLECTIVE'),--直升机的，未知
+    CANOPY_POS = get_param_handle('BASE_SENSOR_CANOPY_POS'),--座舱盖位置，0闭合1开启
+    FLAPS_RETRACTED = get_param_handle('BASE_SENSOR_FLAPS_RETRACTED'),--襟翼是否收回
+    FUEL_TOTAL = get_param_handle('BASE_SENSOR_FUEL_TOTAL'),--总燃油量，包括外挂副油箱
+    STICK_ROLL_NORMED = get_param_handle('BASE_SENSOR_STICK_ROLL_NORMED'),--
+    RUDDER_NORMED = get_param_handle('BASE_SENSOR_RUDDER_NORMED'),--
+    RIGHT_THROTTLE_RAW_CONTROL = get_param_handle('BASE_SENSOR_RIGHT_THROTTLE_RAW_CONTROL')--右节流阀
+}
+
+
+MS_TO_KNOTS = 1.9504132 --米每秒换算节
+MS_TO_KMH = 3.6--米每秒换算千米时
+METER_TO_INCH = 3.2808--米换算英尺
+KG_TO_LBS = 2.204623 -- 公斤换算磅
+Meter_TO_NM = 0.00054 --米换算海里
+
+function GetGroundSpeed()
+    local gsx, gsy, gsz = get_base_data():getSelfVelocity()
+    return math.sqrt(gsx * gsx + gsz * gsz)
+end
