@@ -9,7 +9,7 @@ make_default_activity(update_time_step)
 if not StringContains(package.cpath,';'..LockOn_Options.script_path.. '../../bin/?.dll') then
     package.cpath 			= package.cpath..";".. LockOn_Options.script_path.. "../../bin/?.dll"
 end
-local av = require('avSimplestWeaponSystem')
+local av = require('DCSAvionicsExport')
 
 local cockpit3dHost
 local cockpit2dHost

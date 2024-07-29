@@ -5,7 +5,7 @@ dofile(LockOn_Options.script_path.."utils.lua")
 if not StringContains(package.cpath,';'..LockOn_Options.script_path.. '../../bin/?.dll') then
     package.cpath 			= package.cpath..";".. LockOn_Options.script_path.. "../../bin/?.dll"
 end
-local av = require('avSimplestWeaponSystem')
+local av = require('DCSAvionicsExport')
 local uhfPowerStatus = 0
 local vhfPowerStatus = 0
 
