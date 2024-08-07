@@ -90,9 +90,9 @@ av = {
         -- proto: string, the path to the sound sdef file, relative to the sounds/sdef folder  
         -- Optional parameters:  
         -- sndLength: double, the length of the audio file, default -1  
-        -- radius: double, the radius of influence of the sound source, default 1000  
+        -- radius: double, the radius of influence of the sound source, default 1.0
         -- pitch: double, pitch shift, the playback speed ratio will also change, default 1  
-        -- lowpass: double, the lowest frequency to play, sound below this frequency will not play ,default 24000
+        -- lowpass: double, minimum playback frequency multiplier, sound below this frequency will not play ,default 1.0
 
         addSrcAlt = function(hostId,proto,altProto,sndLength,radius,pitch,lowpass),--create a sound source and return its ID
         -- hostId: int, the ID of the sound emitter host  
@@ -100,15 +100,15 @@ av = {
         -- altProto: string, an alternative path to the sound sdef file, relative to the sounds/sdef folder (Unclear difference from addSrc)  
         -- Optional parameters:  
         -- sndLength: double, the length of the sound file, default -1  
-        -- radius: double, the radius of influence of the sound source, default 1000  
+        -- radius: double, the radius of influence of the sound source, default 1.0
         -- pitch: double, pitch shift, the playback speed ratio will also change, default 1  
-        -- lowpass: double, the lowest frequency to play, sound below this frequency will not play ,default 24000
+        -- lowpass: double, minimum playback frequency multiplier, sound below this frequency will not play ,default 1.0
 
         delSrc = function(srcId),--delete a specified sound source
         isPlaying = function(srcId),--check if a sound source is playing, returns a boolean
         srcLink = function(srcId1,srcId2),--link two sound sources, causing them to synchronize playback states, often used for cockpit and external sound synchronization
         srcUnlink = function(srcId),--unlink a specified sound source, stopping playback state synchronization
-        playOnce = function(srcId),--play a specified sound source once, if sndLength is passed to addSrc and the cumulative effect of dt passed to updateHost exceeds sndLength, playback will stop
+        playOnce = function(srcId),--play a specified sound source once, if sndLength is passed to addSrc and the cumulative effect of dt passed to updateHost exceeds sndLength, playback will stop.If you call the addSrc function without passing sndLength, the playback will stop automatically when it ends, but calling the isPlaying function will still return true.
         playLoop = function(srcId),--loop a specified sound source
         stop = function(srcId),--stop playback of a specified sound source
 		
@@ -122,7 +122,7 @@ av = {
 
         setSrcLowpass = function(srcId,lowpass),--Sets the low-pass filter cutoff frequency for a specified sound source
         --srcId:int,The ID of the sound source
-        --lowpass:double,The cutoff frequency for the low-pass filter, in Hz
+        --lowpass:double,Low pass filter cutoff frequency multiplier
 
         setSrcRadius = function(srcId,radius),--Sets the influence radius for a specified sound source
         --srcId:int,The ID of the sound source

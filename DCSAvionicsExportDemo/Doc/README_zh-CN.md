@@ -89,9 +89,9 @@ av = {
         --proto:string,音频sdef文件的路径，以sounds/sdef文件夹为根路径
         --以下参数可选
         --sndLength:double,音频文件的长度,默认-1
-        --radius:double,音源作用半径,默认1000
+        --radius:double,音源作用半径倍率,原值为sdef文件指定的radius值,默认1.0
         --pitch:double,音高变调，同时播放速度倍率也会改变，默认1
-        --lowpass:double,音频最低频率，如果音频播放的过程中，频率低于指定的最低频率将不会播放
+        --lowpass:double,音频最低频率倍率,原值为sdef文件指定的lowpass的值，如果音频播放的过程中，频率低于指定的最低频率将不会播放，默认1.0
 
         addSrcAlt = function(hostId,proto,altProto,sndLength,radius,pitch,lowpass),--创建音源,返回已创建的音源id
         --hostId:int,发声器主机id
@@ -99,15 +99,15 @@ av = {
         --altProto:string,音频sdef文件的路径，以sounds/sdef文件夹为根路径(我不知道这个函数与addSrc有什么区别)
         --以下参数可选
         --sndLength:double,音频文件的长度,默认-1
-        --radius:double,音源作用半径,默认1000
+        --radius:double,音源作用半径倍率,原值为sdef文件指定的radius值,默认1.0
         --pitch:double,音高变调，同时播放速度倍率也会改变，默认1
-        --lowpass:double,音频最低频率，如果音频播放的过程中，频率低于指定的最低频率将不会播放
+        --lowpass:double,音频最低频率倍率,原值为sdef文件指定的lowpass的值，如果音频播放的过程中，频率低于指定的最低频率将不会播放，默认1.0
 
         delSrc = function(srcId),--删除指定的音源
         isPlaying = function(srcId),--检测音源是否在播放,返回值bool
         srcLink = function(srcId1,srcId2),--关联音源,关联后将会同步播放状态，常用于座舱内与座舱外的音频同步
         srcUnlink = function(srcId),--解除关联指定的音源,解除关联后将不会同步播放状态
-        playOnce = function(srcId),--播放一次指定的音源,如果调用函数addSrc传递了sndLength,在调用updateHost函数传递的参数dt的累计影响下，如果播放时间超过sndLength将会停止播放
+        playOnce = function(srcId),--播放一次指定的音源,如果调用函数addSrc传递了sndLength,在调用updateHost函数传递的参数dt的累计影响下，如果播放时间超过sndLength将会停止播放。如果调用addSrc函数没有传递sndLength，播放结束也会自己停止，只不过调用isPlaying函数仍然返回true
         playLoop = function(srcId),--循环播放指定的音源
         stop = function(srcId),--停止播放指定的音源
         setSrcGain = function(srcId,gain),--设置指定音源的音量增益
@@ -118,13 +118,13 @@ av = {
         --srcId:int,音源id
         --pitch:double,音高增益
 
-        setSrcLowpass = function(srcId,lowpass),--设置指定音源的最低播放频率
+        setSrcLowpass = function(srcId,lowpass),--设置指定音源的最低播放频率倍率
         --srcId:int,音源id
-        --lowpass:double,最低播放频率，单位赫兹
+        --lowpass:double,最低播放频率倍率
 
-        setSrcRadius = function(srcId,radius),--设置指定音源的作用半径
+        setSrcRadius = function(srcId,radius),--设置指定音源的作用半径倍率
         --srcId:int,音源id
-        --radius:double,作用半径,单位米
+        --radius:double,作用半径倍率
 
         setListenerGain = function(gain),--设置监听器的音量增益
         setListenerPitch = function(pitch),--设置监听器的音高增益，可用来倍速播放
