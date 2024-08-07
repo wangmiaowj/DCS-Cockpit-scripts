@@ -90,9 +90,8 @@ av = {
         -- proto: string, the path to the sound sdef file, relative to the sounds/sdef folder  
         -- Optional parameters:  
         -- sndLength: double, the length of the audio file, default -1  
-        -- The following 3 parameters are likely not frequently used:  
         -- radius: double, the radius of influence of the sound source, default 1000  
-        -- pitch: double, pitch shift, default 1  
+        -- pitch: double, pitch shift, the playback speed ratio will also change, default 1  
         -- lowpass: double, the lowest frequency to play, sound below this frequency will not play ,default 24000
 
         addSrcAlt = function(hostId,proto,altProto,sndLength,radius,pitch,lowpass),--create a sound source and return its ID
@@ -101,9 +100,8 @@ av = {
         -- altProto: string, an alternative path to the sound sdef file, relative to the sounds/sdef folder (Unclear difference from addSrc)  
         -- Optional parameters:  
         -- sndLength: double, the length of the sound file, default -1  
-        -- The following 3 parameters are likely not frequently used:  
         -- radius: double, the radius of influence of the sound source, default 1000  
-        -- pitch: double, pitch shift, default 1  
+        -- pitch: double, pitch shift, the playback speed ratio will also change, default 1  
         -- lowpass: double, the lowest frequency to play, sound below this frequency will not play ,default 24000
 
         delSrc = function(srcId),--delete a specified sound source
@@ -113,12 +111,12 @@ av = {
         playOnce = function(srcId),--play a specified sound source once, if sndLength is passed to addSrc and the cumulative effect of dt passed to updateHost exceeds sndLength, playback will stop
         playLoop = function(srcId),--loop a specified sound source
         stop = function(srcId),--stop playback of a specified sound source
-        --The following functions might be considered as potentially unnecessary or specific to a certain sound manipulation context:
+		
         setSrcGain = function(srcId,gain),--Sets the volume gain for a specified sound source
         --srcId:int,id of the sound source
         --gain:double,The volume gain factor
 
-        setSrcPitch = function(srcId,pitch),--Sets the pitch shift for a specified sound source
+        setSrcPitch = function(srcId,pitch),--Set the pitch gain of the specified sound source, which can be used to play at double speed
         --srcId:int,The ID of the sound source
         --pitch:double,The volume pitch factor
 
@@ -131,7 +129,7 @@ av = {
         --radius:double,The influence radius, in meters
 
         setListenerGain = function(gain),--Sets the volume gain for the listener
-        setListenerPitch = function(pitch),--Sets the pitch shift for the listener
+        setListenerPitch = function(pitch),--Set the pitch gain of the monitor, which can be used to play at double speed
         setListenerLowpass = function(lowpass),--Sets the low-pass filter cutoff frequency for the listener
     }
 }

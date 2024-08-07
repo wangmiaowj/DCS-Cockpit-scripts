@@ -89,9 +89,8 @@ av = {
         --proto:string,音频sdef文件的路径，以sounds/sdef文件夹为根路径
         --以下参数可选
         --sndLength:double,音频文件的长度,默认-1
-        --以下3个参数应该没什么用
         --radius:double,音源作用半径,默认1000
-        --pitch:double,音高变调，默认1
+        --pitch:double,音高变调，同时播放速度倍率也会改变，默认1
         --lowpass:double,音频最低频率，如果音频播放的过程中，频率低于指定的最低频率将不会播放
 
         addSrcAlt = function(hostId,proto,altProto,sndLength,radius,pitch,lowpass),--创建音源,返回已创建的音源id
@@ -100,9 +99,8 @@ av = {
         --altProto:string,音频sdef文件的路径，以sounds/sdef文件夹为根路径(我不知道这个函数与addSrc有什么区别)
         --以下参数可选
         --sndLength:double,音频文件的长度,默认-1
-        --以下3个参数应该没什么用
         --radius:double,音源作用半径,默认1000
-        --pitch:double,音高变调，默认1
+        --pitch:double,音高变调，同时播放速度倍率也会改变，默认1
         --lowpass:double,音频最低频率，如果音频播放的过程中，频率低于指定的最低频率将不会播放
 
         delSrc = function(srcId),--删除指定的音源
@@ -112,12 +110,11 @@ av = {
         playOnce = function(srcId),--播放一次指定的音源,如果调用函数addSrc传递了sndLength,在调用updateHost函数传递的参数dt的累计影响下，如果播放时间超过sndLength将会停止播放
         playLoop = function(srcId),--循环播放指定的音源
         stop = function(srcId),--停止播放指定的音源
-        --以下函数可能是无用的函数
         setSrcGain = function(srcId,gain),--设置指定音源的音量增益
         --srcId:int,音源id
         --gain:double,音量增益
 
-        setSrcPitch = function(srcId,pitch),--设置指定音源的音高增益
+        setSrcPitch = function(srcId,pitch),--设置指定音源的音高增益,可用来倍速播放
         --srcId:int,音源id
         --pitch:double,音高增益
 
@@ -130,7 +127,7 @@ av = {
         --radius:double,作用半径,单位米
 
         setListenerGain = function(gain),--设置监听器的音量增益
-        setListenerPitch = function(pitch),--设置监听器的音高增益
+        setListenerPitch = function(pitch),--设置监听器的音高增益，可用来倍速播放
         setListenerLowpass = function(lowpass),--设置监听器的最低播放频率
     }
 }
