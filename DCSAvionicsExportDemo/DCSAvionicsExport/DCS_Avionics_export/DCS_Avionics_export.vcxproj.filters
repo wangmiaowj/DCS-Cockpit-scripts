@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="头文件\include">
+      <UniqueIdentifier>{ccc78537-b23d-401f-a1e8-4a44afac4583}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\include\lua">
+      <UniqueIdentifier>{5abd5de4-e242-4996-b9b1-42654f45fa51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\ED">
+      <UniqueIdentifier>{282db205-ace7-499e-bfd5-35d07b8e4e96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Avionics">
+      <UniqueIdentifier>{c3b236d0-28a9-45dc-a782-d395d074404e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Avionics">
+      <UniqueIdentifier>{860b4b7e-ffff-4f44-b5fa-de83dbbb579c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DCS_Avionics_export.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\lua\lauxlib.h">
+      <Filter>头文件\include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="include\lua\lua.h">
+      <Filter>头文件\include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="include\lua\luaconf.h">
+      <Filter>头文件\include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="include\lua\lualib.h">
+      <Filter>头文件\include\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DCS_Avionics_exportAPI.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Avionics\avA11Clock.h">
+      <Filter>头文件\Avionics</Filter>
+    </ClInclude>
+    <ClInclude Include="Avionics\avILS.h">
+      <Filter>头文件\Avionics</Filter>
+    </ClInclude>
+    <ClInclude Include="Avionics\avSimpleElectricSystem.h">
+      <Filter>头文件\Avionics</Filter>
+    </ClInclude>
+    <ClInclude Include="Avionics\avUHF_ARC_164.h">
+      <Filter>头文件\Avionics</Filter>
+    </ClInclude>
+    <ClInclude Include="Avionics\avVHF_ARC_186.h">
+      <Filter>头文件\Avionics</Filter>
+    </ClInclude>
+    <ClInclude Include="ED\Actions.h">
+      <Filter>头文件\ED</Filter>
+    </ClInclude>
+    <ClInclude Include="ED\ccParametersAPI.h">
+      <Filter>头文件\ED</Filter>
+    </ClInclude>
+    <ClInclude Include="ED\ccUnits.h">
+      <Filter>头文件\ED</Filter>
+    </ClInclude>
+    <ClInclude Include="ED\CockpitAPI_Declare.h">
+      <Filter>头文件\ED</Filter>
+    </ClInclude>
+    <ClInclude Include="ED\ed_sounds_api.h">
+      <Filter>头文件\ED</Filter>
+    </ClInclude>
+    <ClInclude Include="ED\iCommand.h">
+      <Filter>头文件\ED</Filter>
+    </ClInclude>
+    <ClInclude Include="ED\sound.h">
+      <Filter>头文件\ED</Filter>
+    </ClInclude>
+    <ClInclude Include="ED\sounder.h">
+      <Filter>头文件\ED</Filter>
+    </ClInclude>
+    <ClInclude Include="MyException.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Maths.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Table.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec3.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Units.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Avionics\avSimpleWeapon.h">
+      <Filter>头文件\Avionics</Filter>
+    </ClInclude>
+    <ClInclude Include="ED\ed_sound_params.h">
+      <Filter>头文件\ED</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DCS_Avionics_export.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Avionics\avA11Clock.cpp">
+      <Filter>源文件\Avionics</Filter>
+    </ClCompile>
+    <ClCompile Include="Avionics\avILS.cpp">
+      <Filter>源文件\Avionics</Filter>
+    </ClCompile>
+    <ClCompile Include="Avionics\avSimpleElectricSystem.cpp">
+      <Filter>源文件\Avionics</Filter>
+    </ClCompile>
+    <ClCompile Include="Avionics\avUHF_ARC_164.cpp">
+      <Filter>源文件\Avionics</Filter>
+    </ClCompile>
+    <ClCompile Include="Avionics\avVHF_ARC_186.cpp">
+      <Filter>源文件\Avionics</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
